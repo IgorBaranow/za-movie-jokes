@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
 import { Flex, Heading, SimpleGrid, Spinner, useToast } from "@chakra-ui/react";
-import { MOVIEDB_IMAGES_URL } from "src/common/ui/constants";
+import { MOVIEDB_IMAGES_URL } from "src/common/constants";
 import {
   fetchMovies,
   selectAllMovies,
@@ -16,6 +16,8 @@ function MoviesList() {
   const movies = useSelector(selectAllMovies); //passed function has access to whole state of my whole app and then I just say what exactly I want to take from my state. In the case I am taking movies, where I basically have the list of movies. This name is specify is the store.
   const moviesStatus = useSelector(selectMoviesStatus);
   const moviesError = useSelector(selectMoviesError);
+
+  console.log(movies);
 
   useEffect(() => {
     const fetchData = async () => {

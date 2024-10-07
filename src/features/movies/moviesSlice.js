@@ -9,7 +9,6 @@ const initialState = {
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
   const data = await fetchPopularMovies();
-
   return data.data;
 });
 
@@ -38,5 +37,5 @@ export const selectMoviesStatus = (state) => state.movies.status;
 export const selectMoviesError = (state) => state.movies.error;
 export const selectMovieById = (state, movieId) =>
   state.movies.movies.find((movie) => movie.id === Number(movieId));
-
+console.log(selectAllMovies);
 export default moviesSlice.reducer;
