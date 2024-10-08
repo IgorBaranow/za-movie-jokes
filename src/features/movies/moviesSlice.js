@@ -9,33 +9,18 @@ const initialState = {
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
   const data = await fetchPopularMovies();
+
   return data.data;
 });
 
-const moviesSlice = createSlice({
+const movieSlice = createSlice({
   name: "movies",
-  initialState,
+  initialState: data.results,
   reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(fetchMovies.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchMovies.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.movies = action.payload.results;
-      })
-      .addCase(fetchMovies.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      });
-  },
 });
 
-export const selectAllMovies = (state) => state.movies.movies;
-export const selectMoviesStatus = (state) => state.movies.status;
-export const selectMoviesError = (state) => state.movies.error;
+export const selectAllMovies = (state) => state.movies;
 export const selectMovieById = (state, movieId) =>
   state.movies.movies.find((movie) => movie.id === Number(movieId));
-console.log(selectAllMovies);
+
 export default moviesSlice.reducer;
